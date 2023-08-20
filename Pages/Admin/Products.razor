@@ -1,0 +1,76 @@
+﻿@page "/admin/news"
+@page "/admin"
+@inherits OwningComponentBase<INewsRepository>
+
+<table class="table table-sm table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Haber Başlığı</th>
+            <th>Haber Açıklaması</th>
+            <td />
+        </tr>
+    </thead>
+    <tbody>
+        @if (NewsData?.Count() > 0)
+        {
+            @foreach (News p in NewsData)
+            {
+                <tr>
+                    <td>@p.NewsId</td>
+                    <td>@p.NewsTitle</td>
+                    <td>@p.NewsDescription</td>
+                    @*<td>@p.NewsPublishTime.ToString("c")</td>*@
+                    <td>
+                        <NavLink class="btn btn-info btn-sm"
+                                 href="@GetDetailsUrl(p.NewsId)">
+                            Details
+                        </NavLink>
+                        <NavLink class="btn btn-warning btn-sm"
+                                 href="@GetEditUrl(p.NewsId)">
+                            Edit
+                        </NavLink>
+                        <button class="btn btn-danger btn-sm"
+                                @onclick="@(e => DeleteNews(p))">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">No News</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<NavLink class="btn btn-primary" href="/admin/news/create">Create</NavLink>
+
+@code {
+
+    public INewsRepository Repository => Service;
+
+    public IEnumerable<News> NewsData { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        await UpdateData();
+    }
+
+    public async Task UpdateData()
+    {
+        NewsData = await Repository.Haberler.ToListAsync();
+    }
+
+    public async Task DeleteNews(News p)
+    {
+        Repository.DeleteNews(p);
+        await UpdateData();
+    }
+
+    public string GetDetailsUrl(long id) => $"/admin/news/details/{id}";
+    public string GetEditUrl(long id) => $"/admin/news/edit/{id}";
+}

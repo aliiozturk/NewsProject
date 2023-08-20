@@ -1,0 +1,72 @@
+﻿@page "/admin/news/edit/{id:long}"
+@page "/admin/news/create"
+@inherits OwningComponentBase<INewsRepository>
+
+<style>
+    div.validation-message { color: rgb(220, 53, 69); font-weight: 500 }
+</style>
+
+<h3 class="bg-@ThemeColor text-white text-center p-1">@TitleText a News</h3>
+<EditForm Model="News" OnValidSubmit="SaveNews">
+    <DataAnnotationsValidator />
+    @if(News.NewsId != 0) {
+        <div class="form-group">
+            <label>ID</label>
+            <input class="form-control" disabled value="@News.NewsId" />
+        </div>
+    }
+    <div class="form-group">
+        <label>NewsTitle</label>
+        <ValidationMessage For="@(() => News.NewsTitle)" />
+        <InputText class="form-control" @bind-Value="News.NewsTitle" />
+    </div>
+    <div class="form-group">
+        <label>NewsDescription</label>
+        <ValidationMessage For="@(() => News.NewsDescription)" />
+        <InputText class="form-control" @bind-Value="News.NewsDescription" />
+    </div>
+    <div class="form-group">
+        <label>NewsPublishTime</label>
+        <ValidationMessage For="@(() => News.NewsPublishTime)" />
+        <InputDate class="form-control" @bind-Value="News.NewsPublishTime" />
+    </div>
+
+    @*<div class="form-group">
+        <label>Price</label>
+        <ValidationMessage For="@(() => News.)" />
+        <InputNumber class="form-control" @bind-Value="News.Price" />
+    </div>*@
+    <button type="submit" class="btn btn-@ThemeColor">Save</button>
+    <NavLink class="btn btn-secondary" href="/admin/news">Cancel</NavLink>
+</EditForm>
+
+@code {
+
+    public INewsRepository Repository => Service;
+
+    [Inject]
+    public NavigationManager NavManager { get; set; }
+
+    [Parameter]
+    public long Id { get; set; } = 0;
+
+    public News News { get; set; } = new News();
+
+    protected override void OnParametersSet() {
+        if (Id != 0) {
+            News = Repository.Haberler.FirstOrDefault(p => p.NewsId == Id);
+        }
+    }
+
+    public void SaveNews() {
+        if (Id == 0) {
+            Repository.CreateNews(News);
+        } else {
+            Repository.SaveNews(News);
+        }
+        NavManager.NavigateTo("/admin/news");
+    }
+
+    public string ThemeColor => Id == 0 ? "primary" : "warning";
+    public string TitleText => Id == 0 ? "Create" : "Edit";
+}

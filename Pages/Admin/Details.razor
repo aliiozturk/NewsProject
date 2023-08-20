@@ -1,0 +1,33 @@
+﻿@page "/admin/news/details/{id:long}"
+
+<h3 class="bg-info text-white text-center p-1">Details</h3>
+
+<table class="table table-sm table-bordered table-striped">
+    <tbody>
+        <tr><th>ID</th><td>@News.NewsId</td></tr>
+        <tr><th>Name</th><td>@News.NewsTitle</td></tr>
+        <tr><th>Description</th><td>@News.NewsDescription</td></tr>
+        <tr><th>Category</th><td>@News.NewsPublishTime</td></tr>
+        @*<tr><th>Price</th><td>@News.ne.ToString("C")</td></tr>*@
+    </tbody>
+</table>
+
+<NavLink class="btn btn-warning" href="@EditUrl">Edit</NavLink>
+<NavLink class="btn btn-secondary" href="/admin/news">Back</NavLink>
+
+@code {
+
+    [Inject]
+    public INewsRepository Repository { get; set; }
+
+    [Parameter]
+    public long Id { get; set; }
+
+    public News News { get; set; }
+
+    protected override void OnParametersSet() {
+        News = Repository.Haberler.FirstOrDefault(p => p.NewsId == Id);
+    }
+
+    public string EditUrl => $"/admin/news/edit/{News.NewsId}";
+}

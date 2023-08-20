@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html lang="zxx">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>DUNEWS</title>
+    <!-- plugin css for this page -->
+    <link rel="stylesheet"
+          href="./assets/vendors/mdi/css/materialdesignicons.min.css" />
+    <link rel="stylesheet" href="assets/vendors/aos/dist/aos.css/aos.css" />
+    <link href="~/assets/css/kendiCss.css" rel="stylesheet" />
+    <!-- End plugin css for this page -->
+    <link rel="shortcut icon" href="assets/images/favicon.png" />
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- endinject -->
+</head>
+
+<body>
+    <div class="container-scroller">
+        <div class="main-panel">
+            <!-- partial:partials/_navbar.html -->
+            <header id="header">
+                <div class="container">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <div class="navbar-top">
+                            <div class="d-flex justify-content-between align-items-center">
+                            </div>
+                        </div>
+                        <div class="navbar-bottom">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <a class="navbar-brand" href="#">
+                                        <img style="" src="~/assets/images/logodenemesi.png" alt="" />
+                                    </a>
+                                </div>
+                                <div>
+                                    <button class="navbar-toggler"
+                                            type="button"
+                                            data-target="#navbarSupportedContent"
+                                            aria-controls="navbarSupportedContent"
+                                            aria-expanded="false"
+                                            aria-label="Toggle navigation">
+                                        <span class="navbar-toggler-icon"></span>
+                                    </button>
+                                    <div class="navbar-collapse justify-content-center collapse"
+                                         id="navbarSupportedContent">
+                                        <ul class="navbar-nav d-lg-flex justify-content-between align-items-center">
+                                            <li>
+                                                <button class="navbar-close">
+                                                    <i class="mdi mdi-close"></i>
+                                                </button>
+                                            </li>
+                                            <li class="nav-item active">
+                                                <a class="nav-link" href="index.html">Anasayfa</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="pages/magazine.html">Magazin</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="pages/business.html">Teknoloji</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="pages/sports.html">Spor</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="pages/art.html">Sanat</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="pages/politics.html">Siyaset</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="pages/travel.html">Yaşam</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <ul class="social-media">
+                                    <li>
+                                        <a href="#">
+                                            <i class="mdi mdi-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="mdi mdi-youtube"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="mdi mdi-twitter"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+            <div style="background-color: #c0bcc4; " class="  text-white p-2">
+                <!--<div class="container-fluid">-->
+                    @*<div class="row">
+                        <div class="col navbar-brand">SPORTS STORE</div>
+                        <div class="col-6 text-right">
+                            <vc:cart-summary />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-1 p-1">
+                <div id="categories" class="col-3">
+                    <vc:navigation-menu />*@
+                <!--</div>-->
+
+                <div class="sinif-ortalama">
+                    @RenderBody()
+                </div>
+            </div>
+
+            <footer style="background-color:#c0bcc4;">
+                <div class="footer-top">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-5">
+                                <img src="assets/images/logodenemesi.png" class="footer-logo" alt="" />
+                                <h5 class="font-weight-normal mt-4 mb-5">
+                                    DUNEWS.com: Türkiye'nin en kapsamlı haber sitesi. Son dakika haberleri ve en güncel gelişmeler DUNEWS.com'da.
+                                </h5>
+                                <ul class="social-media mb-3">
+                                    <li>
+                                        <a href="#">
+                                            <i class="mdi mdi-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="mdi mdi-youtube"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <i class="mdi mdi-twitter"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="d-sm-flex justify-content-between align-items-center">
+                                    <div class="fs-14 font-weight-600">
+                                        © 2023 All rights reserved.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            </div>
+        </div>
+</body>
+</html>
